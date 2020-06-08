@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    text-align: center;
+}
+
+.edu-container {
+    text-align: center;
+}
+
+.edu-container p {
+    text-align: left;
+}
+
+.education-container {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.title {
+    font-size: 20px;
+}
+h1 { 
+    font-weight: bold;
+}
+
+.education-container .classes {
+    order: 2;
+}
+
+.education-container .activities {
+    order: 3;
+}

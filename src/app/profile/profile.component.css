@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    /*background-color: #243b35;*/
+}
+
+.center-container {
+    text-align: center;
+    background-color: whitesmoke;
+    padding: 5% 5%;
+}
+
+.about-container {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    margin: 0;
+}
+
+.about-container p {
+    order: 21;
+    text-align: center;
+    max-width: 625px;
+    margin: 0;
+}
+
+h1 {
+    margin: 0;
+    padding-top: 2%;
+    font-family: 'Merriweather', serif;
+}
+
+.position-geometry {
+    text-align: center;
+    background-color: darkslategray;
+    height: 30vh;
+    margin-top: -1%;
+}
+
+.under-geometry {
+    margin-top: -10px;
+    width: 100vw;
+    height: 30vh;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 90% 0%, 80% 0%, 60% 0%, 40% 0% , 20% 0% , 10% 0% ,0% 0%);
+    animation: clips 5s ease infinite;
+    background-color: whitesmoke;
+}
+
+
+@keyframes clips {
+    50% {
+        clip-path: polygon(0% 0%, 100% 0%, 55% 0%, 55% 60%, 62% 60%, 50% 100%, 50% 100% , 38% 60% , 45% 60% ,45% 0%);
+    }
+  }
