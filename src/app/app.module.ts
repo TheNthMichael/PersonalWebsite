@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileEducationComponent } from './profile-education/profile-education.component';
 import { SkillsComponent } from './skills/skills.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
