@@ -2,6 +2,34 @@
     box-sizing: border-box;
 }
 
+ul {
+
+}
+
+li {
+    list-style-type: '>  ';
+    text-align: left;
+}
+
+
+.container {
+    background-color: darkslategray;
+    color: whitesmoke;
+    text-align: center;
+    clip-path: polygon(0% 0%, 25% 16%, 50% 2%, 75% 12%, 100% 3%, 100% 100%, 0% 100%);
+    animation: clips2 5s ease infinite;
+}
+
+.content {
+    padding: 5% 10%;
+}
+
+.skills-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
 .star {
     display: inline-block;
     background-color: salmon;
@@ -9,3 +37,14 @@
     width: 1rem;
     height: 1rem;
 }
+
+
+
+@keyframes clips2{
+    50% {
+        clip-path: polygon(0% 0%, 25% 6%, 50% 20%, 75% 2%, 100% 3%, 100% 100%, 0% 100%);
+    }
+    75% {
+        clip-path: polygon(0% 3%, 25% 13%, 50% 6%, 75% 20%, 100% 2%, 100% 100%, 0% 100%); 
+       }
+  }
