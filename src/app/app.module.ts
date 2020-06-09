@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CanvasbackgroundComponent } from './canvasbackground/canvasbackground.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileEducationComponent } from './profile-education/profile-education.component';
+import { SkillsComponent } from './skills/skills.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ProfileEducationComponent } from './profile-education/profile-education
     NavbarComponent,
     CanvasbackgroundComponent,
     ProfileComponent,
-    ProfileEducationComponent
+    ProfileEducationComponent,
+    SkillsComponent
   ],
   imports: [
     BrowserModule,

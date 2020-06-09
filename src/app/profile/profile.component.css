@@ -38,14 +38,16 @@ h1 {
 .position-geometry {
     text-align: center;
     background-color: darkslategray;
+    width: 100%; 
     height: 30vh;
-    margin-top: -1%;
+    max-height: 230px;
 }
 
 .under-geometry {
     margin-top: -10px;
-    width: 100vw;
-    height: 30vh;
+    position: relative;
+    height: 100%;
+    max-height: 230px;
     clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 90% 0%, 80% 0%, 60% 0%, 40% 0% , 20% 0% , 10% 0% ,0% 0%);
     animation: clips 5s ease infinite;
     background-color: whitesmoke;
@@ -55,5 +57,8 @@ h1 {
 @keyframes clips {
     50% {
         clip-path: polygon(0% 0%, 100% 0%, 55% 0%, 55% 60%, 62% 60%, 50% 100%, 50% 100% , 38% 60% , 45% 60% ,45% 0%);
+    }
+    100% {
+        clip-path: polygon(0% 0%, 100% 0%, 50% 0%, 50% 100%, 62% 100%, 100% 100%, 0% 100% , 38% 100% , 50% 100% ,50% 0%);
     }
   }
