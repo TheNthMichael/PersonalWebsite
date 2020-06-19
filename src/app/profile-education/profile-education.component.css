@@ -11,6 +11,9 @@
 .center {
     display: flex;
     justify-content: center;
+    width: 90%;
+    max-width: 625px;
+    margin: 0 auto;
 }
 
 .container {
@@ -22,21 +25,46 @@
 .edu-container {
     text-align: center;
     background-color: whitesmoke;
-    padding: 3% 0%;
+    padding-bottom: 3%;
 }
 
 .edu-container p {
     text-align: left;
+    
 }
 
 .education-container {
     display: flex;
-    justify-content: space-evenly;
+    flex-wrap: wrap;
+    flex-direction: row;
     text-align: center;
+    width: 90%;
+    max-width: 625px;
+    margin: auto;
 }
+
+.classes {
+    order: 1;
+    padding: 2%;
+    margin:15px;
+}
+
+.activities {
+    order: 2;
+    padding: 2%;
+    margin:15px;
+}
+
+.labs {
+    order: 3;
+    padding: 2%;
+    margin:15px;
+}
+
 
 .title {
     font-family: 'Merriweather', serif;
+    font-size: 1.5rem;
 }
 h2 { 
   font-size: 1.25rem;  
@@ -51,6 +79,7 @@ h2 {
 }
 
 ul {
+    font-size: 1.2rem;
 }
 
 ul li {

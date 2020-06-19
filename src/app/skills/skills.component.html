@@ -1,29 +1,32 @@
-<div class="container">
-    <div class="content">
-        <div class="title">
-            <h1>Skills</h1>
-        </div>
-        <div class="skills-container">
-            <div class="column1">
-                <ul>
-                    <li class="case" *ngFor="let Test of TESTS2">{{ Test.skill }} : 
-                        <span *ngFor="let i of Arr(Test.rating).fill(1)"> 
-                            <span class="star"></span>  
-                        </span>
-                    </li>
-                </ul>
+
+<div class="color-container">
+    <div class="container">
+        <div class="content">
+            <div class="title">
+                <h1>Skills</h1>
             </div>
-            <div class="column2">
-                <ul>
-                    <li class="case" *ngFor="let Test of TESTS2">{{ Test.skill }} : 
-                        <span *ngFor="let i of Arr(Test.rating).fill(1)"> 
-                            <span class="star"></span>  
-                        </span>
-                    </li>
-                </ul>
+            <div class="skills-container">
+                <div class="column1">
+                    <ul>
+                        <li class="case" *ngFor="let Test of TESTSC1">{{ Test.skill }} : 
+                            <span *ngFor="let i of Arr(Test.rating).fill(1)"> 
+                                <span class="star"></span>  
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="column2">
+                    <ul>
+                        <li class="case" *ngFor="let Test of TESTSC2">{{ Test.skill }} : 
+                            <span *ngFor="let i of Arr(Test.rating).fill(1)"> 
+                                <span class="star"></span>  
+                            </span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
     
-    
 </div>
+

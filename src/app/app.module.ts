@@ -9,6 +9,9 @@ import { CanvasbackgroundComponent } from './canvasbackground/canvasbackground.c
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileEducationComponent } from './profile-education/profile-education.component';
 import { SkillsComponent } from './skills/skills.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { WhiteSmokeSpacerComponent } from './white-smoke-spacer/white-smoke-spacer.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -18,12 +21,15 @@ import { SkillsComponent } from './skills/skills.component';
     CanvasbackgroundComponent,
     ProfileComponent,
     ProfileEducationComponent,
-    SkillsComponent
+    SkillsComponent,
+    ProjectsComponent,
+    WhiteSmokeSpacerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

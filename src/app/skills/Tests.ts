@@ -8,5 +8,16 @@ export class Test {
   }
   
   
-export const TESTS: Test[] = [new Test('C', 5), new Test('C++', 2), new Test('Angular', 3)];
+export const TESTS: Test[] = [
+  new Test('C', 3), 
+  new Test('C++', 3), 
+  new Test('Angular', 2),
+];
+
+export const TESTS2: Test[] = [
+  new Test('Python', 2),
+  new Test('Java', 3),
+  new Test('NodeJS', 2)
+];
+
 

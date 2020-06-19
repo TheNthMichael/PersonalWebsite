@@ -14,12 +14,14 @@ li, a, button {
     font-size: 16px;
     color: antiquewhite;
     text-decoration: none;
+    margin-top: 5px;
 }
 
 header {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     padding: 10px 10px;
 }
 
@@ -50,6 +52,7 @@ header {
 }
 
 button {
+    width: 80%;
     color: antiquewhite;
     margin-left: 20px;
     padding: 9px 25px;
@@ -57,7 +60,7 @@ button {
     border: none;
     cursor: pointer;
     transition: all 0.3s ease 0s;
-    border-radius: 10px;
+    border-radius: 3px;
 }
 
 button:hover {

@@ -18,13 +18,14 @@
 .about-container {
     display: flex;
     justify-content: center;
-    width: 90%;
-    margin: 0;
+    text-align: center;
+    width: 95%;
+    max-width: 625px;
+    margin: 0 auto;
 }
 
 .about-container p {
-    order: 21;
-    text-align: center;
+    text-align: left;
     max-width: 625px;
     margin: 0;
 }

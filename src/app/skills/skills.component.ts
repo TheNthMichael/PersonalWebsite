@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Test, TESTS } from './Tests'
+import {Test, TESTS, TESTS2 } from './Tests'
 
 @Component({
   selector: 'app-skills',
@@ -11,7 +11,9 @@ import {Test, TESTS } from './Tests'
 
 export class SkillsComponent implements OnInit {
 
-  TESTS2 = TESTS;
+  TESTSC1 = TESTS;
+  TESTSC2 = TESTS2;
+
   Arr = Array;
 
   constructor() { }
