@@ -2,60 +2,15 @@
     <div class="title-top"><h1>Projects</h1></div>
     <div class="grid-display">
         <!--Throw Template Here for each project :: Implement lazy load carousel -->
-        <div class="project-template">
+        <div class="project-template" *ngFor="let project of projects | async">
             <a href="#">
-                <h1 class="title">Project Name Here</h1>
+                <h1 class="title">{{ project.name }}</h1>
                 <img src="../../assets/test.png" alt="Project Index">
             </a>
             <p class="description">
-                project description goes here...
+                {{ project.description }}
             </p>
         </div>
         
         <!--Delete Here-->
-        <div class="project-template">
-            <a href="#">
-                <h1 class="title">Project Name Here</h1>
-                <img src="../../assets/test.png" alt="Project Index">
-            </a>
-            <p class="description">
-                project description goes here...
-            </p>
-        </div>
-        <div class="project-template">
-            <a href="#">
-                <h1 class="title">Project Name Here</h1>
-                <img src="../../assets/test.png" alt="Project Index">
-            </a>
-            <p class="description">
-                project description goes here...
-            </p>
-        </div>
-        <div class="project-template">
-            <a href="#">
-                <h1 class="title">Project Name Here</h1>
-                <img src="../../assets/test.png" alt="Project Index">
-            </a>
-            <p class="description">
-                project description goes here...
-            </p>
-        </div>
-        <div class="project-template">
-            <a href="#">
-                <h1 class="title">Project Name Here</h1>
-                <img src="../../assets/test.png" alt="Project Index">
-            </a>
-            <p class="description">
-                project description goes here...
-            </p>
-        </div>
-        <div class="project-template">
-            <a href="#">
-                <h1 class="title">Project Name Here</h1>
-                <img src="../../assets/test.png" alt="Project Index">
-            </a>
-            <p class="description">
-                project description goes here...
-            </p>
-        </div>
 </div>

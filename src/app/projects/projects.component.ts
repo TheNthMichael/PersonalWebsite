@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {http} from './fetch'
+import { GitprojectsService } from './../gitprojects.service';
 
 @Component({
   selector: 'app-projects',
@@ -8,12 +8,15 @@ import {http} from './fetch'
 })
 export class ProjectsComponent implements OnInit {
 
-  constructor() { }
+  projects;
+
+  constructor(private projectservice: GitprojectsService) { }
 
   ngOnInit(): void {
     //curl https://api.github.com/users/mirynw/repos returns an array of objects with attributes that we will want to display
       // example consuming code
-    const data =  http("https://api.github.com/users/mirynw/repos");
+    this.projects = this.projectservice.requestProjectList();
+    console.log(this.projects);
   }
 
 
