@@ -30,8 +30,9 @@
     width: 90%;
     max-width: 625px;
     margin: auto;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: auto auto auto auto;
     flex-wrap: wrap;
 }
 
@@ -53,19 +54,110 @@ a:link {
   }
 
 .project-template {
-    background-color: whitesmoke;
-    width: 30%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 30px 0 30px 0;
+    /* display: flexbox;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
     min-width: 275px;
     margin: 1% 2%;
     text-align: center;
     border-radius: 1%;
-    color: darkslategray;
+    color: darkslategray; */
 }
 
 .project-template:hover {
-    box-shadow: inset 0 0 10px darkslategray;
+
+}
+
+.project-image-container {
+    order: 1;
+    background-color: darkslategray;
+    border-radius: 10%;
+    padding: 2% 2%;
+    width: 70%;
+    max-width: 300px;
+    margin: auto 1%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
 img {
-    width:50%;
+    width: 100%;
+    border-radius: 10%;
+    transition: 0.3s;
+}
+
+img:hover {
+    border-radius: 15%;
+    -webkit-filter: grayscale(0100%) blur(3px);
+	filter: grayscale(50%) blur(3px);
+	-webkit-transition: .4s ease-in-out;
+	transition: .4s ease-in-out;
+}
+
+.description-container {
+    order: 2;
+    background-color: whitesmoke;
+    box-shadow: inset 0 0 10px darkslategray; 
+    padding: 2% 2%;
+    max-width: 300px;
+    width: 100%;
+    margin: auto 1%;
+    min-height: 100px;
+    /* width: 60%;
+    background-color: whitesmoke;
+    box-shadow: inset 0 0 10px darkslategray; */
+}
+
+
+.description-container:hover > .pointer {
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+
+    transform: translate(125%, 0%);
+
+    -webkit-transition: .4s ease-in-out;
+	transition: .4s ease-in-out;
+}
+
+.pointer {
+    display: none;
+    transform: translate(25%, 0%);
+}
+
+.title {
+    color: darkslategray;
+    transition: 0.1s;
+    width: 50%;
+    margin: auto;
+}
+
+.title:hover {
+    color: salmon;
+}
+
+
+.button_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.button_container a {
+    color: whitesmoke;
+    background-color: salmon;
+    width: 100%;
+    max-width: 100px;
+    height: 25px;
 }

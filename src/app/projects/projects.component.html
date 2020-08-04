@@ -3,14 +3,26 @@
     <div class="grid-display">
         <!--Throw Template Here for each project :: Implement lazy load carousel -->
         <div class="project-template" *ngFor="let project of projects | async">
-            <a href="#">
-                <h1 class="title">{{ project.name }}</h1>
-                <img src="../../assets/test.png" alt="Project Index">
-            </a>
-            <p class="description">
-                {{ project.description }}
-            </p>
+            <div class="project-image-container">
+                <a href="{{ project.html_url }}">
+                    <img src="../../assets/test.png" alt="Project Index">
+                </a>
+            </div>
+            <div class="description-container">
+                <h1 class="pointer"> >> </h1>
+                <a href="{{ project.html_url }}">
+                    <h1 class="title">{{ project.name }}</h1>
+                </a>
+                
+                <p class="description">
+                    {{ project.description }}
+                </p>
+            </div>
         </div>
-        
-        <!--Delete Here-->
+    </div>
+    <!--More projects-->
+    <div class="button_container">
+        <a href="#">More</a>
+    </div>
 </div>
+

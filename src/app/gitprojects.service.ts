@@ -8,6 +8,18 @@ export class GitprojectsService {
 
   constructor(private http: HttpClient) { }
   requestProjectList() {
-    return this.http.get('https://api.github.com/users/thenthmichaelnickerson/repos');
+    return this.http.get('https://api.github.com/users/thenthmichaelnickerson/starred?perpage=100|egrep');
+  }
+}
+
+
+class ProjectData {
+  name: string;
+  description: string;
+  imageUrl: string;
+  constructor(name: string, description: string, imageUrl: string) {
+    this.name = name;
+    this.description = description;
+    this.imageUrl = imageUrl;
   }
 }

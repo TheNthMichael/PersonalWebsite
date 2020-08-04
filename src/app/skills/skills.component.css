@@ -24,7 +24,7 @@ h1 {
 }
 
 .content {
-    padding: 8% 10%;
+    padding: 10% 0;
 }
 
 .skills-container {
@@ -39,16 +39,28 @@ h1 {
     order: 1;
     background-color: darkslategray;
     border-radius: 10%;
-    padding: 2% 4%;
-    margin: 5px 2%;
+    padding: 2% 2%;
+    width: 100%;
+    max-width: 300px;
+    margin: auto 1%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .skills-container .column2 {
     order: 2;
     background-color: darkslategray;
     border-radius: 10%;
-    padding: 2% 4%;
-    margin: 5px 2%;
+    padding: 2% 2%;
+    max-width: 300px;
+    width: 100%;
+    margin: auto 1%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
 }
 /*coolers.co*/
 ul {
@@ -56,8 +68,10 @@ ul {
 }
 
 li {
-    font-size: 18px;
-    padding: 5% 0;
+    width: 100%;
+    font-size: 20px;
+    margin-top: 10px;
+    padding: 10% auto;
     list-style-type: '>  ';
     text-align: left;
 }
@@ -67,8 +81,8 @@ li {
     display: inline-block;
     background-color: salmon;
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-    width: 1rem;
-    height: 1rem;
+    width: 0.75em;
+    height: 0.75em;
 }
 
 
