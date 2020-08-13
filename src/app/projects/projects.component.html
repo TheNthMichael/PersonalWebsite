@@ -4,13 +4,13 @@
         <!--Throw Template Here for each project :: Implement lazy load carousel -->
         <div class="project-template" *ngFor="let project of projects | async">
             <div class="project-image-container">
-                <a href="{{ project.html_url }}">
-                    <img src="../../assets/test.png" alt="Project Index">
+                <a href="{{ project.gitUrl }}">
+                    <img src="{{ project.imageUrl }}" alt="Project Index">
                 </a>
             </div>
             <div class="description-container">
                 <h1 class="pointer"> >> </h1>
-                <a href="{{ project.html_url }}">
+                <a href="{{ project.gitUrl }}">
                     <h1 class="title">{{ project.name }}</h1>
                 </a>
                 

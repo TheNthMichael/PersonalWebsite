@@ -80,7 +80,8 @@ a:link {
     background-color: darkslategray;
     border-radius: 10%;
     padding: 2% 2%;
-    width: 70%;
+    width: 100%;
+    overflow: hidden;
     max-width: 300px;
     margin: auto 1%;
     display: flex;
@@ -90,7 +91,7 @@ a:link {
 }
 
 img {
-    width: 100%;
+    width: 200px;
     border-radius: 10%;
     transition: 0.3s;
 }
