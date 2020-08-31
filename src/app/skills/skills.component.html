@@ -1,32 +1,41 @@
-
-<div class="color-container">
-    <div class="container">
-        <div class="content">
-            <div class="title">
-                <h1>Skills</h1>
-            </div>
-            <div class="skills-container">
-                <div class="column1">
-                    <ul>
-                        <li class="case" *ngFor="let Test of TESTSC1">{{ Test.skill }} : 
-                            <span *ngFor="let i of Arr(Test.rating).fill(1)"> 
-                                <span class="star"></span>  
-                            </span>
-                        </li>
-                    </ul>
+<div class="skills-whole">
+    <canvas #myCanvas2 class="myCanvas"></canvas>
+    <div class="color-container">
+        <div class="container">
+            <div class="content">
+                <div class="title">
+                    <h1>Skills</h1>
                 </div>
-                <div class="column2">
-                    <ul>
-                        <li class="case" *ngFor="let Test of TESTSC2">{{ Test.skill }} : 
-                            <span *ngFor="let i of Arr(Test.rating).fill(1)"> 
-                                <span class="star"></span>  
-                            </span>
-                        </li>
-                    </ul>
+                <div class="skills-container">
+                    <div class="column1">
+                        <ul>
+                            <li class="case" *ngFor="let Test of TESTSC1">{{ Test.skill }} : 
+                                <span *ngFor="let i of Arr(Test.rating).fill(1)"> 
+                                    <span class="star"></span>  
+                                </span>
+                                <span *ngFor="let i of Arr(5 - Test.rating).fill(1)"> 
+                                    <span class="emptystar"></span>  
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="column2">
+                        <ul>
+                            <li class="case" *ngFor="let Test of TESTSC2">{{ Test.skill }} : 
+                                <span *ngFor="let i of Arr(Test.rating).fill(1)"> 
+                                    <span class="star"></span>  
+                                </span>
+                                <span *ngFor="let i of Arr(5 - Test.rating).fill(1)"> 
+                                    <span class="emptystar"></span>  
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
+        
     </div>
-    
 </div>
+
 

@@ -43,12 +43,13 @@ header {
     padding: 0px 20px;
 }
 
-.nav_links li a {
+.nav_links li{
     transition: all 0.3s ease 0s;
 }
 
-.nav_links li a:hover {
+.nav_links li:hover {
     color: aquamarine;
+    cursor: pointer;
 }
 
 button {

@@ -62,7 +62,7 @@ export class CanvasbackgroundComponent implements AfterViewInit {
     
     this.path.reverse();
 
-    // prep
+    // Find minimum/maximum x/y values
     let xmax = -99999999999;
     let xmin = 99999999999;
     let ymax = -99999999999;
@@ -82,24 +82,36 @@ export class CanvasbackgroundComponent implements AfterViewInit {
       }
     }
 
+    // if there is extra space, map the x-coordinates xmargin equal to space/2
+    let newMinX = (window.innerWidth - (xmax - xmin)) / 2;
+    let newMaxX = window.innerWidth - newMinX;
+    if(newMinX < 0) {
+      newMinX = 0;
+      newMaxX = window.innerWidth;
+    }
+
+    // linear map the coordinates from the paths original range(min, max) => range(newMin, newMax)
     for(let i = 0; i < this.path.length; i++) {
-      this.path[i].Re = this.map(this.path[i].Re, xmin, xmax, 0, window.innerWidth);
+      this.path[i].Re = this.map(this.path[i].Re, xmin, xmax, newMinX, newMaxX);
       this.path[i].Im = this.map(this.path[i].Im, ymin, ymax, 0, window.innerHeight - (window.innerHeight / 2));
     }
 
+    // Calculate the paths in the frequency domain
     this.complexFourier = this.dft(this.path);
 
+    // sort by decreasing amplitude
     this.complexFourier.sort((a,b) => b.Amp - a.Amp);
 
+    // dt can be 2^n * PI / num_freq_bins
     this.dt = 4 * Math.PI / this.complexFourier.length;
     this.time = 0;
 
     console.log(this.complexFourier);
 
+    // How often we draw the next point on the path
     setInterval( ()=> {this.draw();}, 1000/144);
 
-    // Painter
-    this.mouseDownId = -1;
+
 
 
   }
@@ -114,7 +126,7 @@ export class CanvasbackgroundComponent implements AfterViewInit {
     this.fPath.push(point);
 
  
-    this.ctx.strokeStyle = 'rgba(50,200,200,1)';
+    this.ctx.strokeStyle = '#000000';
     this.ctx.lineWidth = 1;
     this.ctx.lineCap = "round";
     
@@ -123,7 +135,7 @@ export class CanvasbackgroundComponent implements AfterViewInit {
     for(let i = 0; i < this.fPath.length; i++) {
       this.ctx.lineTo(this.fPath[i].Re, this.fPath[i].Im);
     }
-    this.ctx.fillStyle = 'rgba(50,50,100,1)';
+    this.ctx.fillStyle = '#243b35';
     this.ctx.fill();
     this.ctx.stroke();
     this.time += this.dt;
@@ -132,24 +144,6 @@ export class CanvasbackgroundComponent implements AfterViewInit {
       this.time = 2 * this.dt;
       this.fPath = [];
     }
-
-    
-    /*this.ctx.beginPath();
-    this.ctx.moveTo(0, this.canvas.height / 2);
-
-    for(let i = 0; i <= this.canvas.width; i+=10) {
-      let sum = this.sinSum(i / this.canvas.width);
-      let r = this.map(sum, -1*this.range, 1*this.range, 0, 255);
-      let g = 255-r;
-      this.ctx.lineTo(i, this.canvas.height / 2 + sum * 500);
-      this.ctx.strokeStyle = this.rgbToHex(r,g,160);
-      this.ctx.lineTo(i, this.canvas.height);
-      this.ctx.lineTo(i, this.canvas.height / 2 + sum * 500);
-    }
-    this.ctx.stroke();
-    this.offset += (this.speed / this.canvas.width);
-  */
-
 
   }
 
@@ -223,7 +217,7 @@ export class CanvasbackgroundComponent implements AfterViewInit {
 
     let headlen = 10;
 
-    this.ctx.strokeStyle = 'rgba(50,168,125,1)';
+    this.ctx.strokeStyle = 'whitesmoke';
     for(let i = 0; i < complexFourier.length; i++) {
       if(i != 0) {
         let prevX = x;
@@ -253,48 +247,6 @@ export class CanvasbackgroundComponent implements AfterViewInit {
     return new Vector2d(x,y);
   }
 
-  /*  epicycles(x,y,angle, complexFourier)
-    Input type:
-    complexFourier: {Re: vevtor.Re, Im: vevtor.Im, Freq: k, Amp: Math.sqrt(vevtor.Re * vevtor.Re + vevtor.Im * vevtor.Im), Phase: Math.atan2(vevtor.Im, vevtor.Re)}
-    Return type:
-    {X, Y}
-  */
- epicycles_derivative(x: number,y: number,angle, complexFourier) {
-  // Setup
-  let theta = 0;
-
-  let headlen = 10;
-
-  this.ctx.strokeStyle = 'rgba(50,168,125,1)';
-  for(let i = 0; i < complexFourier.length; i++) {
-    if(i != 0) {
-      let prevX = x;
-      let prevY = y;
-      headlen = complexFourier[i].Amp / 20;
-      this.ctx.beginPath();
-      this.ctx.moveTo(x,y);
-      x += complexFourier[i].Freq * complexFourier[i].Amp * -1 * Math.sin(complexFourier[i].Freq * this.time + complexFourier[i].Phase + angle);
-      y += complexFourier[i].Freq * complexFourier[i].Amp * Math.cos(complexFourier[i].Freq * this.time + complexFourier[i].Phase + angle);
-      theta = Math.atan2(y - prevY, x - prevX);
-      // may want to draw epicycle vectors here
-      this.ctx.lineTo(x,y);
-      this.ctx.stroke();
-      this.canvas_arrow(this.ctx, prevX, prevY, x, y, headlen);
-
-    }
-    else {
-      let prevX = x;
-      let prevY = y;
-      x += complexFourier[i].Amp * Math.cos(complexFourier[i].Freq * this.time + complexFourier[i].Phase + angle);
-      y += complexFourier[i].Amp * Math.sin(complexFourier[i].Freq * this.time + complexFourier[i].Phase + angle);
-
-    }
-    
-  }
-  this.ctx.stroke();
-  return new Vector2d(x,y);
-}
-
 
 
   canvas_arrow(context, fromx, fromy, tox, toy, r){
@@ -304,7 +256,8 @@ export class CanvasbackgroundComponent implements AfterViewInit {
     var angle;
     var x;
     var y;
-
+    this.ctx.strokeStyle = 'whitesmoke';
+    this.ctx.fillStyle = 'whitesmoke';
     context.beginPath();
 
     angle = Math.atan2(toy-fromy,tox-fromx)
