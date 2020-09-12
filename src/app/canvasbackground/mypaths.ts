@@ -7,7 +7,7 @@ class Vector2d {
     }
   }
 
-
+// Shhhhhh... We don't talk about this
 export const PATHS: Vector2d[] = [
   new Vector2d(1023, 367),
   new Vector2d(1022, 368),

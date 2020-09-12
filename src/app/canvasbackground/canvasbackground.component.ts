@@ -14,12 +14,7 @@ export class CanvasbackgroundComponent implements AfterViewInit {
   myCanvas: ElementRef<HTMLCanvasElement>;
   canvas;
   public ctx: CanvasRenderingContext2D;
-  offset: number;
-  amplitude;
-  frequency;
-  waveLength;
-  range;
-  speed;
+  
 
   // Fourier Drawing Stuff
   prevX;
@@ -39,19 +34,6 @@ export class CanvasbackgroundComponent implements AfterViewInit {
     this.ctx = this.myCanvas.nativeElement.getContext('2d');
     this.canvas = this.myCanvas.nativeElement;
     
-    this.offset = 0;
-    this.speed = -150;
-    this.frequency = [];
-    this.amplitude = [];
-    this.waveLength = [];
-    for(let i = 0; i < 10; i++) {
-        this.frequency.push(2*i);
-        this.amplitude.push(i/10);
-        this.waveLength.push(3*i);
-    }
-
-    this.range = this.amplitude.reduce( (a,b)=> { return a + b; });
-    
 
     // Fourier
 
@@ -60,9 +42,10 @@ export class CanvasbackgroundComponent implements AfterViewInit {
     }*/
     this.path = PATHS;
     
+    // data used was in reverse :/
     this.path.reverse();
 
-    // Find minimum/maximum x/y values
+    // Find minimum/maximum x/y values and if the points are ever larger/smaller than these values, I think something went wrong with generating the path...
     let xmax = -99999999999;
     let xmin = 99999999999;
     let ymax = -99999999999;
@@ -106,7 +89,7 @@ export class CanvasbackgroundComponent implements AfterViewInit {
     this.dt = 4 * Math.PI / this.complexFourier.length;
     this.time = 0;
 
-    console.log(this.complexFourier);
+    //console.log(this.complexFourier);
 
     // How often we draw the next point on the path
     setInterval( ()=> {this.draw();}, 1000/144);
@@ -117,6 +100,7 @@ export class CanvasbackgroundComponent implements AfterViewInit {
   }
 
   draw() {
+    // resize to window
     this.ctx.canvas.width  = window.innerWidth;
     this.ctx.canvas.height = window.innerHeight;
     
@@ -147,14 +131,6 @@ export class CanvasbackgroundComponent implements AfterViewInit {
 
   }
 
-  sinSum(x: number) {
-    let sum = 0;
-    for(let i = 0; i < this.frequency.length; i++) {
-      sum += this.amplitude[i] * Math.sin(2 * Math.PI * this.frequency[i] * x + this.offset + this.waveLength[i]);
-    }
-    return sum / (this.frequency.length-1);
-    //return Math.sin(x + this.offset) / (x + this.offset);
-  }
   
   map(x, in_min, in_max, out_min, out_max)
   {
@@ -214,34 +190,34 @@ export class CanvasbackgroundComponent implements AfterViewInit {
   epicycles(x: number,y: number,angle, complexFourier) {
     // Setup
     let theta = 0;
-
     let headlen = 10;
 
     this.ctx.strokeStyle = 'whitesmoke';
-    for(let i = 0; i < complexFourier.length; i++) {
-      if(i != 0) {
-        let prevX = x;
-        let prevY = y;
-        headlen = complexFourier[i].Amp / 20;
-        this.ctx.beginPath();
-        this.ctx.moveTo(x,y);
-        x += complexFourier[i].Amp * Math.cos(complexFourier[i].Freq * this.time + complexFourier[i].Phase + angle);
-        y += complexFourier[i].Amp * Math.sin(complexFourier[i].Freq * this.time + complexFourier[i].Phase + angle);
-        theta = Math.atan2(y - prevY, x - prevX);
-        // may want to draw epicycle vectors here
-        this.ctx.lineTo(x,y);
-        this.ctx.stroke();
-        this.canvas_arrow(this.ctx, prevX, prevY, x, y, headlen);
-
-      }
-      else {
-        let prevX = x;
-        let prevY = y;
-        x += complexFourier[i].Amp * Math.cos(complexFourier[i].Freq * this.time + complexFourier[i].Phase + angle);
-        y += complexFourier[i].Amp * Math.sin(complexFourier[i].Freq * this.time + complexFourier[i].Phase + angle);
-
-      }
+    // avoid conditional every iteration
+    if(complexFourier.length > 1) {
+      theta = complexFourier[0].Freq * this.time + complexFourier[0].Phase + angle
+      let prevX = x;
+      let prevY = y;
+      x += complexFourier[0].Amp * Math.cos(theta);
+      y += complexFourier[0].Amp * Math.sin(theta);
+    }
+    for(let i = 1; i < complexFourier.length; i++) {
+      // store previous coordinates
+      let prevX = x;
+      let prevY = y;
       
+      // Sum up x and y components of epicycle
+      this.ctx.beginPath();
+      this.ctx.moveTo(x,y);
+      theta = complexFourier[i].Freq * this.time + complexFourier[i].Phase + angle
+      x += complexFourier[i].Amp * Math.cos(theta);
+      y += complexFourier[i].Amp * Math.sin(theta);
+
+      // Draw Epicycle Arrows
+      this.ctx.lineTo(x,y);
+      this.ctx.stroke();
+      headlen = complexFourier[i].Amp / 20;
+      this.canvas_arrow(this.ctx, prevX, prevY, x, y, headlen);
     }
     this.ctx.stroke();
     return new Vector2d(x,y);
@@ -285,7 +261,7 @@ export class CanvasbackgroundComponent implements AfterViewInit {
 
 }
 
-
+// data structure used for points
 class Vector2d {
   Re;
   Im;
@@ -295,6 +271,7 @@ class Vector2d {
   }
 }
 
+// data structure used to store the results of the discrete fourier transform
 class FourierInfo {
   Re;
   Im;

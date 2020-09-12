@@ -1,0 +1,38 @@
+
+
+.footer {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    
+    background-color: darkslategray;
+}
+
+.social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}   
+
+.social-icon {
+    background-color: whitesmoke;
+    text-align: center;
+    display: inline-block;
+    width: 40px;
+    height: 38px;
+    padding: 5px 5px;
+    color: darkslategray;
+    margin: 2px 20px;
+    border-radius: 5%;
+    font-size: 1.7em;
+}
+
+.social-icon:hover {
+    background-color: slategray;
+}
+
+.spacer {
+    background-color: darkslategray;
+    padding: 50px 0;
+}

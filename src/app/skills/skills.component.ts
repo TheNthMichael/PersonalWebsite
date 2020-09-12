@@ -30,7 +30,7 @@ export class SkillsComponent implements AfterViewInit {
     this.ctx = this.myCanvas.nativeElement.getContext('2d');
     this.canvas = this.myCanvas.nativeElement;
     this.dt = 0;
-    this.speed = 100;
+    this.speed = 50;
     setInterval( ()=> {this.draw();}, 1000/30);
   }
 

@@ -12,6 +12,7 @@ import { SkillsComponent } from './skills/skills.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { WhiteSmokeSpacerComponent } from './white-smoke-spacer/white-smoke-spacer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProfileEducationComponent,
     SkillsComponent,
     ProjectsComponent,
-    WhiteSmokeSpacerComponent
+    WhiteSmokeSpacerComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -28,18 +28,22 @@ export class GitprojectsService {
     let url = "";
     let git = "";
     for(let proj of projects) {
-      name = proj.name;
-      description = proj.description;
-      git = proj.html_url;
-      let response = await this.getImageList(`https://api.github.com/repos/TheNthMichaelNickerson/${name}/contents/`);
-      if(response.length == 0) {
-        url = `../../assets/test.png`;
+      // Check that the starred repo is from TheNthMichaelNickerson's github
+      if(proj.html_url.toLowerCase().includes('thenthmichaelnickerson')) {
+        name = proj.name;
+        description = proj.description;
+        git = proj.html_url;
+        // Grab any image files that are stored in the repo (Be Careful What You Upload! avoid memes pls...)
+        let response = await this.getImageList(`https://api.github.com/repos/TheNthMichaelNickerson/${name}/contents/`);
+        if(response.length == 0) {    // no image was found, falling back to default icon
+          url = `../../assets/test.png`;
+        }
+        else {
+          url = response[Math.floor(Math.random() * response.length)];  // pick a random image from repo
+        }
+        console.log(url);
+        listOfProjects.push(new ProjectData(name.replace(/-/g, " "), description, url, git));   // replacing all occurences of '-' with ' '
       }
-      else {
-        url = response[Math.floor(Math.random() * response.length)];  // pick a random image from repo
-      }
-      console.log(url);
-      listOfProjects.push(new ProjectData(name, description, url, git));
     }
     return listOfProjects;
   }
@@ -69,6 +73,7 @@ export class GitprojectsService {
     for(let im of images) {
       if(im.name.length > 4) {
         subset = im.name.substr(im.name.length-4, im.name.length);
+        // check for image file extension
         if(subset.includes('.jpg') || subset.includes('.png')) {
           names.push(im.download_url);
         }

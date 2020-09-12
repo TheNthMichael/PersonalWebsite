@@ -12,6 +12,7 @@
 
 .container {
     padding-top: 5%;
+    padding-bottom: 10%;
     background-color: darkslategray;
     text-align: center;
 }
@@ -155,10 +156,17 @@ img:hover {
     margin: 10px 0;
 }
 
-.button_container a {
+.button_container button {
     color: whitesmoke;
-    background-color: salmon;
+    background-color: darksalmon;
     width: 100%;
     max-width: 100px;
-    height: 25px;
+    height: 35px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.button_container button:hover{
+    border-radius: 10px;
+    background-color: salmon;
 }
