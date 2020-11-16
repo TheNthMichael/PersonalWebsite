@@ -29,12 +29,12 @@ export class GitprojectsService {
     let git = "";
     for(let proj of projects) {
       // Check that the starred repo is from TheNthMichaelNickerson's github
-      if(proj.html_url.toLowerCase().includes('thenthmichaelnickerson')) {
+      if(proj.html_url.toLowerCase().includes('thenthmichael')) {
         name = proj.name;
         description = proj.description;
         git = proj.html_url;
         // Grab any image files that are stored in the repo (Be Careful What You Upload! avoid memes pls...)
-        let response = await this.getImageList(`https://api.github.com/repos/TheNthMichaelNickerson/${name}/contents/`);
+        let response = await this.getImageList(`https://api.github.com/repos/TheNthMichael/${name}/contents/`);
         if(response.length == 0) {    // no image was found, falling back to default icon
           url = `../../assets/test.png`;
         }
@@ -52,14 +52,14 @@ export class GitprojectsService {
       - non async version using http.get(url) -> this was what I was originally using
    */
   requestProjectList() {
-    return this.http.get('https://api.github.com/users/thenthmichaelnickerson/starred?perpage=100|egrep');
+    return this.http.get('https://api.github.com/users/thenthmichael/starred?perpage=100|egrep');
   }
 
   /*  async requestProjectListAsync()
       - async version using await fetch(url) -> currently using
    */
   async requestProjectListAsync() {
-    return await fetch('https://api.github.com/users/thenthmichaelnickerson/starred?perpage=100|egrep');
+    return await fetch('https://api.github.com/users/thenthmichael/starred?perpage=100|egrep');
   }
 
   
